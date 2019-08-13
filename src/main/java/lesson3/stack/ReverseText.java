@@ -2,7 +2,7 @@ package lesson3.stack;
 
 public class ReverseText {
     public static void main(String[] args) {
-        String example= "Тестовая строка";
+        String example= "Тестовая строка. Не очень длинная, но всё же )";
         new ReverseText(example).reverse();
     }
 

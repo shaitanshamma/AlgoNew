@@ -2,7 +2,7 @@ package lesson3.stack;
 
 public class StackImpl<E> implements Stack<E> {
 
-    private final E[] data;
+    public final E[] data;
     private int size;
 
     @SuppressWarnings("unchecked")
