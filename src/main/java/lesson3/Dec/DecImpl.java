@@ -24,9 +24,9 @@ public class DecImpl<E> implements Dec<E> {
     public boolean insertLeft(E value) {
         if (isFull())
         return false;
-        if (head - 1 < 0)
-            head = lastIndex()+1;
-            data[--head] = value;
+        if (tail==DEFAULT_TAIL)
+            tail= lastIndex()+1;
+            data[--tail] = value;
             size++;
 
         return true;
