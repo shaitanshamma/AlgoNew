@@ -3,9 +3,9 @@ package lesson4.linkedlist;
 
 import Utils.ICollection;
 
-import java.util.Iterator;
 
-public interface LinkedList<E> extends ICollection {
+
+public interface LinkedList<E> extends ICollection/*, Iterable*/ {
 
     void insertFirst(E value);
 
