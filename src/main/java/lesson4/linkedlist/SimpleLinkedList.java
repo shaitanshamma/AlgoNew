@@ -1,5 +1,8 @@
 package lesson4.linkedlist;
 
+import java.util.Iterator;
+import java.util.function.Consumer;
+
 public class SimpleLinkedList<E> implements LinkedList<E> {
 
     protected Entry<E> firstElement;
@@ -92,6 +95,25 @@ public class SimpleLinkedList<E> implements LinkedList<E> {
     @Override
     public E getFirstValue() {
         return firstElement != null ? firstElement.value : null;
+    }
+
+    @Override
+    public Iterator<E> iterator() {
+        return new Iterator<E>() {
+            private Entry<E> current = firstElement;
+
+            @Override
+            public boolean hasNext() {
+                return current != null;
+            }
+
+            @Override
+            public E next() {
+                E result = current.value;
+                current = current.next;
+                return result;
+            }
+        };
     }
 
 }

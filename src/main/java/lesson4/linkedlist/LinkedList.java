@@ -5,7 +5,7 @@ import Utils.ICollection;
 
 
 
-public interface LinkedList<E> extends ICollection/*, Iterable*/ {
+public interface LinkedList<E> extends ICollection, Iterable {
 
     void insertFirst(E value);
 

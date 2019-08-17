@@ -4,7 +4,7 @@ public class LinkedList {
     private Link first;
 
 
-    public LinkedList(){
+    public LinkedList() {
         first = null;
 
     }
@@ -17,17 +17,17 @@ public class LinkedList {
         this.first = first;
     }
 
-    public LinkInterator getIterator(){
+    public LinkInterator getIterator() {
         return new LinkInterator(this);
     }
 
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         return (first == null);
     }
 
-    public void display(){
+    public void display() {
         Link current = first;
-        while(current != null){
+        while (current != null) {
             current.display();
             current = current.next;
         }

@@ -35,7 +35,7 @@ public class TestIterator {
         linkedList.insertFirst(2);
         linkedList.insertFirst(3);
 
-//        for (int value : linkedList) {
+//        for (Object value : linkedList) {
 //            doAction(value);
 //        }
 
