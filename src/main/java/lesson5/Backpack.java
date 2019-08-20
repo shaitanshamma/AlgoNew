@@ -29,49 +29,70 @@ public class Backpack {
         stuffList.add(powerbank);
 
         Backpack backpack = new Backpack(4);
-        backpack.makeAllSets(stuffList);
+
         System.out.println("Исходный набор :");
         display(stuffList);
-        System.out.println("Лучший набор : ");
-        System.out.println(backpack.getBestStuffs());
-    }
+        backpack.checkBestGroup(stuffList);
+        System.out.println("Лучший набор :");
 
-    public void makeAllSets(List<Stuff> stuff) {
-        if (stuff.size() > 0) {
-            this.checkSet(stuff);
-        }
-        for (int i = 0; i < stuff.size(); i++) {
-            List<Stuff> newSet = new ArrayList<>(stuff);
-            newSet.remove(i);
-            makeAllSets(newSet);
-        }
+        display(bestList);
+        System.out.println("Цена лучшего набора : " + priceForAll(bestList));
     }
+//        backpack.makeAllSets(stuffList);
+//        System.out.println("Исходный набор :");
+//        display(stuffList);
+//        System.out.println("Лучший набор : ");
+//        System.out.println(backpack.getBestStuffs());
 
-    private double calcWeigth(List<Stuff> stuffs) {
-        double result = 0;
-        for (Stuff stuff : stuffs) {
-            result += stuff.weight;
-        }
-        return result;
-    }
+//    public void makeAllSets(List<Stuff> stuff) {
+//        if (stuff.size() > 0) {
+//            this.checkBestGroup(stuff);
+//        }
+//        for (int i = 0; i < stuff.size(); i++) {
+//            List<Stuff> newSet = new ArrayList<>(stuff);
+//            newSet.remove(i);
+//            makeAllSets(newSet);
+//        }
+//    }
+//
+//    private double calcWeigth(List<Stuff> stuffs) {
+//        double result = 0;
+//        for (Stuff stuff : stuffs) {
+//            result += stuff.weight;
+//        }
+//        return result;
+//    }
+//
+//    private double calcPrice(List<Stuff> stuffs) {
+//        double result = 0;
+//        for (Stuff stuff : stuffs) {
+//            result += stuff.price;
+//        }
+//        return result;
+//    }
+//    private void checkSet(List<Stuff> stuff) {
+//        if (this.bestList == null) {
+//            if (this.calcWeigth(stuff) <= this.maxWeight) {
+//                this.bestList = stuff;
+//                this.bestPrice = this.calcPrice(stuff);
+//            }
+//        } else {
+//            if (this.calcWeigth(stuff) <= this.maxWeight && this.calcPrice(stuff) > this.bestPrice) {
+//                this.bestList = stuff;
+//                this.bestPrice = this.calcPrice(stuff);
+//            }
+//        }
+//    }
 
-    private double calcPrice(List<Stuff> stuffs) {
-        double result = 0;
-        for (Stuff stuff : stuffs) {
-            result += stuff.price;
-        }
-        return result;
-    }
-    private void checkSet(List<Stuff> stuff) {
-        if (this.bestList == null) {
-            if (this.calcWeigth(stuff) <= this.maxWeight) {
-                this.bestList = stuff;
-                this.bestPrice = this.calcPrice(stuff);
-            }
-        } else {
-            if (this.calcWeigth(stuff) <= this.maxWeight && this.calcPrice(stuff) > this.bestPrice) {
-                this.bestList = stuff;
-                this.bestPrice = this.calcPrice(stuff);
+    private void checkBestGroup(List<Stuff> stuffList){
+        for (int i = 0; i <stuffList.size() ; i++) {
+            if(stuffList.get(i).weight <= maxWeight){
+                maxWeight -=stuffList.get(i).weight;
+                bestList.add(stuffList.get(i));
+                Stuff temp = stuffList.get(i);
+                stuffList.remove(i);
+                stuffList.add(temp);
+                checkBestGroup(stuffList);
             }
         }
     }
@@ -90,7 +111,9 @@ public class Backpack {
         return summ;
     }
 
-    public List<Stuff> getBestStuffs() {
-        return this.bestList;
-    }
+
+//
+//    public List<Stuff> getBestStuffs() {
+//        return this.bestList;
+//    }
 }
