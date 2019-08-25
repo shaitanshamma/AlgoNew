@@ -202,7 +202,7 @@ public class TreeImpl<E extends Comparable<? super E>> implements Tree<E> {
                         Math.abs(height(node.leftChild) - height(node.rightChild)) <= 1;
     }
 
-    private static int height(Node node) {
+    public int height(Node node) {
         return node == null ? 0 : 1 + Math.max(height(node.leftChild), height(node.rightChild));
     }
 
