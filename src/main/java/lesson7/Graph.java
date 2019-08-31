@@ -170,8 +170,8 @@ public class Graph {
         int startPointIndex = indexOf(startPoint);
         int endPointIndex = indexOf(endPoint);
 
-        if (startPointIndex == -1) {
-            throw new IllegalArgumentException("Invalid startLabel: " + startPointIndex);
+        if (startPointIndex == -1 || endPointIndex == -1) {
+            throw new IllegalArgumentException("Invalid Label: " + startPointIndex + " " + endPointIndex);
         }
 
         Queue<Vertex> queue = new LinkedList<>();
