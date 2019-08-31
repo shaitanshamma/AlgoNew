@@ -160,7 +160,7 @@ public class Graph {
     }
 
     private void visitVertex(Queue<Vertex> queue, Vertex vertex) {
-      //  System.out.println(vertex.getLabel());
+        //  System.out.println(vertex.getLabel());
         queue.add(vertex);
         vertex.setVisited(true);
     }
@@ -183,12 +183,9 @@ public class Graph {
         while (!queue.isEmpty()) {
             vertex = getNearUnvisitedVertex(queue.peek());
             if (vertex != null && !vertex.equals(vertexEnd)) {
-
                 visitVertex(queue, vertex);
-
             } else {
                 queue.remove();
-
             }
         }
         printPath(vertexEnd);
@@ -197,7 +194,7 @@ public class Graph {
         System.out.println("Кратчайший путь " + startPoint + " -> " + endPoint + ":");
 
         while (!stack.empty()) {
-            System.out.print(stack.pop().getLabel()+ "  ");
+            System.out.print(stack.pop().getLabel() + "  ");
         }
         resetVertexState();
     }
