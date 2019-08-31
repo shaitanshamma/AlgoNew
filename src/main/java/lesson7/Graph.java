@@ -160,13 +160,13 @@ public class Graph {
     }
 
     private void visitVertex(Queue<Vertex> queue, Vertex vertex) {
-        System.out.println(vertex.getLabel());
+      //  System.out.println(vertex.getLabel());
         queue.add(vertex);
         vertex.setVisited(true);
     }
 
-    public void testPath(String startPoint, String endPoint) {
-        this.startPoint = startPoint;
+    public void testPath(String startPoints, String endPoint) {
+        this.startPoint = startPoints;
         int startPointIndex = indexOf(startPoint);
         int endPointIndex = indexOf(endPoint);
 
@@ -179,29 +179,27 @@ public class Graph {
         Vertex vertex = vertexList.get(startPointIndex);
         Vertex vertexEnd = vertexList.get(endPointIndex);
         visitVertex(queue, vertex);
-
-
+        stack.push(vertexEnd);
         while (!queue.isEmpty()) {
             vertex = getNearUnvisitedVertex(queue.peek());
-            if (vertex != null) {
-                if (!vertex.equals(vertexEnd))
-                    visitVertex(queue, vertex);
+            if (vertex != null && !vertex.equals(vertexEnd)) {
+
+                visitVertex(queue, vertex);
 
             } else {
                 queue.remove();
-                System.out.println(vertexEnd.getLabel());
-                stack.push(vertexEnd);
-                printPath(vertexEnd);
-                while (!stack.empty()){
-                    System.out.println(stack.pop());
-                }
-                break;
+
             }
-
         }
+        printPath(vertexEnd);
 
+        System.out.println("------------------------");
+        System.out.println("Кратчайший путь " + startPoint + " -> " + endPoint + ":");
+
+        while (!stack.empty()) {
+            System.out.print(stack.pop().getLabel()+ "  ");
+        }
         resetVertexState();
-
     }
 
     public Vertex printPath(Vertex vertex) {
@@ -212,7 +210,6 @@ public class Graph {
             for (int i = 0; i < size; i++) {
                 if (adjMat[endPointIndex][i] && vertexList.get(i).isVisited()) {
                     stack.push(vertexList.get(i));
-//                    printPath(vertexList.get(i));
                     return printPath(vertexList.get(i));
                 }
             }
