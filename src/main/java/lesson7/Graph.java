@@ -7,6 +7,10 @@ public class Graph {
     private final List<Vertex> vertexList;
     private final boolean[][] adjMat;
 
+    private String startPoint;
+
+    Stack<Vertex> stack = new Stack<>();
+
     private int size;
 
     public Graph(int maxVertexCount) {
@@ -162,7 +166,7 @@ public class Graph {
     }
 
     public void testPath(String startPoint, String endPoint) {
-
+        this.startPoint = startPoint;
         int startPointIndex = indexOf(startPoint);
         int endPointIndex = indexOf(endPoint);
 
@@ -186,13 +190,33 @@ public class Graph {
             } else {
                 queue.remove();
                 System.out.println(vertexEnd.getLabel());
+                stack.push(vertexEnd);
+                printPath(vertexEnd);
+                while (!stack.empty()){
+                    System.out.println(stack.pop());
+                }
                 break;
             }
+
         }
 
         resetVertexState();
 
     }
 
-}
+    public Vertex printPath(Vertex vertex) {
 
+        int endPointIndex = vertexList.indexOf(vertex);
+
+        if (!vertex.getLabel().equals(startPoint)) {
+            for (int i = 0; i < size; i++) {
+                if (adjMat[endPointIndex][i] && vertexList.get(i).isVisited()) {
+                    stack.push(vertexList.get(i));
+//                    printPath(vertexList.get(i));
+                    return printPath(vertexList.get(i));
+                }
+            }
+        }
+        return vertex;
+    }
+}

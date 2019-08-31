@@ -4,6 +4,7 @@ public class Vertex {
 
     private final String label;
     private boolean visited;
+    public Vertex prev;
 
     public Vertex(String label) {
         this.label = label;
