@@ -205,8 +205,9 @@ public class Graph {
 
         if (!vertex.getLabel().equals(startPoint)) {
             for (int i = 0; i < size; i++) {
-                if (adjMat[endPointIndex][i] && vertexList.get(i).isVisited()) {
+                if (adjMat[i][endPointIndex] && vertexList.get(i).isVisited()) {
                     stack.push(vertexList.get(i));
+                    vertexList.get(i).setVisited(false);
                     return printPath(vertexList.get(i));
                 }
             }
