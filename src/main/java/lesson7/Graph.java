@@ -183,12 +183,12 @@ public class Graph {
 
         while (!queue.isEmpty()) {
             vertex = getNearUnvisitedVertex(queue.peek());
-            if (vertex != null && ! vertex.equals(vertexEnd)) {
+            if (vertex != null && !vertex.equals(vertexEnd)) {
                 visitVertex(queue, vertex);
 
-            } else if(vertex != null && vertex.equals(vertexEnd)){
+            } else if (vertex != null && vertex.equals(vertexEnd)) {
                 break;
-            }else  queue.remove();
+            } else queue.remove();
         }
         printPath(vertexEnd);
 

@@ -36,12 +36,15 @@ public class Main7 {
 
         graph.addEdge("Калуга", "Орел");
         graph.addEdge("Орел", "Курск");
+        graph.addEdge("Курск", "Воронеж");
 
 
         System.out.println("Vertex count: " + graph.getSize());
         graph.display();
 //        graph.dfs("Курск");
-        graph.testPath("Орел", "Воронеж");
+        graph.testPath("Воронеж", "Тамбов");
+        graph.testPath("Москва", "Воронеж");
+        graph.testPath("Калуга", "Тула");
     }
 
     private static void testDfs() {
