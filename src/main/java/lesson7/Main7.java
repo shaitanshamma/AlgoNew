@@ -41,7 +41,7 @@ public class Main7 {
         System.out.println("Vertex count: " + graph.getSize());
         graph.display();
 //        graph.dfs("Курск");
-        graph.testPath("Москва", "Воронеж");
+        graph.testPath("Орел", "Воронеж");
     }
 
     private static void testDfs() {

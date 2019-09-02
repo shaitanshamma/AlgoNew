@@ -167,7 +167,7 @@ public class Graph {
 
     public void testPath(String startPoints, String endPoint) {
         this.startPoint = startPoints;
-        int startPointIndex = indexOf(startPoint);
+        int startPointIndex = indexOf(startPoints);
         int endPointIndex = indexOf(endPoint);
 
         if (startPointIndex == -1 || endPointIndex == -1) {
@@ -180,13 +180,15 @@ public class Graph {
         Vertex vertexEnd = vertexList.get(endPointIndex);
         visitVertex(queue, vertex);
         stack.push(vertexEnd);
+
         while (!queue.isEmpty()) {
             vertex = getNearUnvisitedVertex(queue.peek());
-            if (vertex != null && !vertex.equals(vertexEnd)) {
+            if (vertex != null && ! vertex.equals(vertexEnd)) {
                 visitVertex(queue, vertex);
-            } else {
-                queue.remove();
-            }
+
+            } else if(vertex != null && vertex.equals(vertexEnd)){
+                break;
+            }else  queue.remove();
         }
         printPath(vertexEnd);
 
@@ -205,7 +207,7 @@ public class Graph {
 
         if (!vertex.getLabel().equals(startPoint)) {
             for (int i = 0; i < size; i++) {
-                if (adjMat[i][endPointIndex] && vertexList.get(i).isVisited()) {
+                if (adjMat[endPointIndex][i] && vertexList.get(i).isVisited()) {
                     stack.push(vertexList.get(i));
                     vertexList.get(i).setVisited(false);
                     return printPath(vertexList.get(i));
